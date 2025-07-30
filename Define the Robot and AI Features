@@ -1,0 +1,55 @@
+void setup() {
+  Serial.begin(9600); // Bluetooth communication
+  pinMode(motorPin1, OUTPUT);
+  pinMode(motorPin2, OUTPUT);
+}
+void loop() {
+  if (Serial.available()) {
+    char command = Serial.read();
+    if (command == '1') { // Move forward
+      digitalWrite(motorPin1, HIGH);
+      digitalWrite(motorPin2, LOW);
+    } else if (command == '0') { // Stop
+      digitalWrite(motorPin1, LOW);
+      digitalWrite(motorPin2, LOW);
+    }
+  }
+}
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <Button android:id="@+id/forwardBtn" android:text="Forward" />
+    <Button android:id="@+id/stopBtn" android:text="Stop" />
+    <EditText android:id="@+id/aiInput" android:hint="Ask AI something" />
+    <Button android:id="@+id/aiSubmit" android:text="Submit" />
+    <TextView android:id="@+id/aiOutput" android:text="AI Response" />
+</LinearLayout
+
+<uses-permission android:name="android.permission.BLUETOOTH" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+class MainActivity : AppCompatActivity() {
+    private lateinit var bluetoothAdapter: BluetoothAdapter
+    private lateinit var bluetoothSocket: BluetoothSocket
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+        findViewById<Button>(R.id.forwardBtn).setOnClickListener {
+            sendCommand("1")
+        }
+        findViewById<Button>(R.id.stopBtn).setOnClickListener {
+            sendCommand("0")
+        }
+    }
+    private fun sendCommand(command: String) {
+        try {
+            bluetoothSocket.outputStream.write(command.toByteArray())
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+}
