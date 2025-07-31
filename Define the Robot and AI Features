@@ -27,13 +27,4 @@ void loop() {
     <TextView android:id="@+id/aiOutput" android:text="AI Response" />
 </LinearLayout
 
-<uses-permission android:name="android.permission.BLUETOOTH" />
-<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-    }
-}
