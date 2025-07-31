@@ -31,23 +31,7 @@ void loop() {
 <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var bluetoothAdapter: BluetoothAdapter
-    private lateinit var bluetoothSocket: BluetoothSocket
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-        findViewById<Button>(R.id.forwardBtn).setOnClickListener {
-            sendCommand("1")
-        }
-        findViewById<Button>(R.id.stopBtn).setOnClickListener {
-            sendCommand("0")
-        }
-    }
-    private fun sendCommand(command: String) {
-        try {
-            bluetoothSocket.outputStream.write(command.toByteArray())
+
         } catch (e: IOException) {
             e.printStackTrace()
         }
