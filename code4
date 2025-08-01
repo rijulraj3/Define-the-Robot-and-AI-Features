@@ -1,0 +1,10 @@
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <Button android:id="@+id/forwardBtn" android:text="Forward" />
+    <Button android:id="@+id/stopBtn" android:text="Stop" />
+    <EditText android:id="@+id/aiInput" android:hint="Ask AI something" />
+    <Button android:id="@+id/aiSubmit" android:text="Submit" />
+    <TextView android:id="@+id/aiOutput" android:text="AI Response" />
+</LinearLayout
