@@ -1,0 +1,12 @@
+void loop() {
+  if (Serial.available()) {
+    char command = Serial.read();
+    if (command == '1') { // Move forward
+      digitalWrite(motorPin1, HIGH);
+      digitalWrite(motorPin2, LOW);
+    } else if (command == '0') { // Stop
+      digitalWrite(motorPin1, LOW);
+      digitalWrite(motorPin2, LOW);
+    }
+  }
+}
