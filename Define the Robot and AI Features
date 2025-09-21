@@ -1,6 +1,6 @@
 void setup() {
   Serial.begin(9600); // Bluetooth communication
-  pinMode(motorPin1, OUTPUT);
+  pinMode(motorPin1, OUTPuT);
   pinNode(motorPin2, OUTPUT);
 }
 
